@@ -58,6 +58,7 @@ def create_parser():
         "--meta",
         dest="meta",
         action="store",
+        required=True,
         help="set absolute file path to upload"
     )
     parser.add_argument(
