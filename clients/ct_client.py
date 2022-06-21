@@ -127,4 +127,5 @@ class TesterValidatorClient(ValidatorClient):
                 json.dump(response.json()["data"], json_file)
             print(f"[INFO] Received patch validation data in {json_path}.", flush=True)
         else:
+            print(f"[DEBUG] {response.json()}")
             print("[ERROR] Failed to validate.", flush=True)
