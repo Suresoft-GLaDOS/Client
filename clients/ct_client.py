@@ -78,12 +78,6 @@ def create_parser():
         default="xxxx",
         help="set port to connect"
     )
-    parser.add_argument(
-        "--meta",
-        dest="meta",
-        action="store",
-        help="set absolute file path to upload"
-    )
     return parser
 
 
@@ -107,7 +101,7 @@ def request_file_upload(args):
     project = {"project": f"{p[-3]}-{p[-2]}-{p[-1]}"}
     try:
         upload_response = requests.post(
-            url=f"http://{args.ip}:{args.port}/uploadFile",
+            url=f"http://{args.host}:{args.port}/uploadFile",
             data=project,
             files=files
         )
