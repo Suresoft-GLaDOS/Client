@@ -111,8 +111,8 @@ def request_file_upload(args):
             data=project,
             files=files
         )
-    except:
-        print("[ERROR] response error")
+    except Exception as e:
+        print(f"[ERROR] {type(e)}, {e}, {e.__traceback__}")
         return None
     return upload_response
 

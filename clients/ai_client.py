@@ -98,10 +98,15 @@ def create_parser():
 
 def request_validation(args, snippets):
     url = f"http://{args.host}:{args.port}"
-    response = requests.post(
-        url=url,
-        json=snippets
-    )
+    try:
+        response = requests.post(
+            url=url,
+            json=snippets
+        )
+    except Exception as e:
+        print(f"[ERROR] {type(e)}, {e}, {e.__traceback__}")
+        return None
+
     if response.status_code == 200:
         json_path = os.path.join(VULCAN_OUTPUT_DIR, "validation_ai.json")
         with open(json_path, "w") as json_file:
