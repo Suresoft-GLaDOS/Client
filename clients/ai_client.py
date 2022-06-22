@@ -42,7 +42,7 @@ def _gen_info_json():
         p_path = os.path.join(MSV_PATCH_DIFF_PATH, p)
         print(f"[DEBUG] {p_path}", flush=True)
 
-        repo_git.execute(["git", "apply", p_path])
+        os.system(f"patch -p0 < {p_path}")
         applied_path = ""
         for item in repo.index.diff(None):
             applied_path = item.a_path
