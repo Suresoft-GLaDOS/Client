@@ -12,6 +12,7 @@ CXBUILD_REPO = os.environ["CXBUILD_REPO"] = r"/home/workspace/cxbuild"
 MSV_REPO = os.getenv("MSV_REPO", None)
 VULCAN_OUTPUT_DIR = os.getenv("VULCAN_OUTPUT_DIR", None)
 VULCAN_TARGET_WORKDIR = os.getenv("VULCAN_TARGET_WORKDIR", None)
+VALIDATION_REPORT_DIR = os.path.join(VULCAN_OUTPUT_DIR, "validation")
 
 
 def check_environments():
@@ -122,7 +123,7 @@ class TesterValidatorClient(ValidatorClient):
         if response is None:
             pass
         elif response.json()["status"]:
-            json_path = os.path.join(VULCAN_OUTPUT_DIR, "validation.json")
+            json_path = os.path.join(VALIDATION_REPORT_DIR, "validation_ct.json")
             with open(json_path, "w") as json_file:
                 json.dump(response.json()["data"], json_file)
             print(f"[INFO] Received patch validation data in {json_path}.", flush=True)

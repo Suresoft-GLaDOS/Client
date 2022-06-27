@@ -11,6 +11,7 @@ from git import Repo
 VULCAN_OUTPUT_DIR = os.getenv("VULCAN_OUTPUT_DIR", None)
 VULCAN_TARGET = os.getenv("VULCAN_TARGET", None)
 MSV_PATCH_DIFF_PATH = os.getenv("MSV_PATCH_DIFF_PATH", None)
+VALIDATION_REPORT_DIR = os.path.join(VULCAN_OUTPUT_DIR, "validation")
 
 
 def check_environments():
@@ -108,7 +109,7 @@ def request_validation(args, snippets):
         return None
 
     if response.status_code == 200:
-        json_path = os.path.join(VULCAN_OUTPUT_DIR, "validation_ai.json")
+        json_path = os.path.join(VALIDATION_REPORT_DIR, "validation_ai.json")
         with open(json_path, "w") as json_file:
             json.dump(response.json(), json_file)
         print(f"[INFO] Received patch validation data in {json_path}.", flush=True)
