@@ -74,7 +74,7 @@ if __name__ == "__main__":
         clients.ct_client.TesterValidatorClient().request(args)
     elif VALIDATOR == "AI":
         clients.ai_client.AIValidatorClient().request(args)
-    elif VALIDATOR == "All":
+    elif VALIDATOR == "ALL":
         clients.ct_client.TesterValidatorClient().request(args)
         clients.ai_client.AIValidatorClient().request(args)
     else:
